@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import Table from './Table'
+import Form from './Form'
 
-function App() {
+const App = () => {
+  const [ users, setUsers ] = useState([])
+
+  const addUser = (user) => {
+    user.id = Date.now()
+    setUsers([ ...users, user ])
+  }
+
+  const deleteUser = (id) => {
+    setUsers(users.filter((user) => user.id !== id))
+  }
+
+  const clearList = () => setUsers([])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+      <div className='row'>
+        <div className='col s12 m6'>
+          <h1>Crypto users</h1>
+          <Form addUser={addUser} users={users} />
+        </div>
+        <div class='col s12'>
+          <Table users={users} deleteUser={deleteUser} />
+          {users.length > 0 && (
+            <button className='btn' onClick={() => clearList()}>
+              Clear List
+            </button>
+          )}
+        </div>
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
