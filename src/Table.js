@@ -1,17 +1,7 @@
 import React from 'react'
 
-const toArray = (users) => {
-  let usersList = []
-  for (let key in users) {
-    let user = users[key]
-    usersList.push(user)
-  }
-  return usersList
-}
-
 const Table = ({ users, deleteUser }) => (
   <table className='striped'>
-    {console.log(users)}
     <thead>
       <tr>
         <th>Nickname</th>

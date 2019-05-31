@@ -9,7 +9,6 @@ const Form = ({ addUser, users }) => {
 
   useEffect(
     () => {
-      console.log(users)
       if (Object.keys(errors).length === 0 && isSubmitting) {
         addUser(user)
         setUser(initialFormState)
@@ -46,7 +45,7 @@ const Form = ({ addUser, users }) => {
         <input type='text' name='ip' value={user.ip} onChange={handleChange} />
         {errors.ip && <p className='red-text'>{errors.ip}</p>}
       </label>
-      <button class='btn'>Add user</button>
+      <button className='btn'>Add user</button>
     </form>
   )
 }

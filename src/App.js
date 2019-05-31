@@ -14,7 +14,11 @@ const App = () => {
     setUsers(users.filter((user) => user.id !== id))
   }
 
-  const clearList = () => setUsers([])
+  const clearList = () => {
+    if (window.confirm('Do you want to delete all users from the list?')) {
+      setUsers([])
+    }
+  }
 
   return (
     <div className='container'>
@@ -23,7 +27,7 @@ const App = () => {
           <h1>Crypto users</h1>
           <Form addUser={addUser} users={users} />
         </div>
-        <div class='col s12'>
+        <div className='col s12'>
           <Table users={users} deleteUser={deleteUser} />
           {users.length > 0 && (
             <button className='btn' onClick={() => clearList()}>
